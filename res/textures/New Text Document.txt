@@ -1,0 +1,49 @@
+Vertex vertices[] = {
+                // front
+                new Vertex(new Vector3f(-1.0f, -1.0f,  1.0f),new Vector2f(1,1)),//Botttom left 0
+                new Vertex(new Vector3f( 1.0f, -1.0f,  1.0f),new Vector2f(0.666f,1)),//bottom right 1
+                new Vertex(new Vector3f( 1.0f,  1.0f,  1.0f),new Vector2f(0.666f,0.666f)),//top right 2
+                new Vertex(new Vector3f( -1.0f, 1.0f,  1.0f),new Vector2f(1,0.666f)),//top left 3
+                //back
+                new Vertex(new Vector3f(-1.0f, -1.0f, -1.0f),new Vector2f(1,1)), //4
+                new Vertex(new Vector3f( 1.0f, -1.0f,-1.0f),new Vector2f(0.666f,1)),//5
+                new Vertex(new Vector3f( 1.0f,  1.0f, -1.0f),new Vector2f(0.666f,0.666f)),//6
+                new Vertex(new Vector3f(-1.0f,  1.0f, -1.0f),new Vector2f(1,0.666f)),//7
+
+
+                new Vertex(new Vector3f(-1.0f, -1.0f, -1.0f),new Vector2f(0,0)),
+                new Vertex(new Vector3f( 1.0f, -1.0f,-1.0f),new Vector2f(0.333f,0)),
+                new Vertex(new Vector3f( 1.0f, -1.0f,  1.0f),new Vector2f(0.333f,0.333f)),//bottom right
+                new Vertex(new Vector3f( 1.0f, -1.0f,  1.0f),new Vector2f(0.333f,0.333f)),//bottom right
+                new Vertex(new Vector3f(-1.0f, -1.0f,  1.0f),new Vector2f(0,0.333f)),//Botttom left
+                new Vertex(new Vector3f(-1.0f, -1.0f, -1.0f),new Vector2f(0,0)),
+
+                new Vertex(new Vector3f(-1.0f, -1.0f, -1.0f),new Vector2f(1,1)),
+                new Vertex(new Vector3f(-1.0f, -1.0f,  1.0f),new Vector2f(0.666f,1)),//Botttom left
+                new Vertex(new Vector3f( -1.0f, 1.0f,  1.0f),new Vector2f(0.666f,0.666f)),//top left
+                new Vertex(new Vector3f( -1.0f, 1.0f,  1.0f),new Vector2f(0.666f,0.666f)),//top left
+                new Vertex(new Vector3f(-1.0f,  1.0f, -1.0f),new Vector2f(1,0.666f)),
+                new Vertex(new Vector3f(-1.0f, -1.0f, -1.0f),new Vector2f(1,1)),
+
+                new Vertex(new Vector3f( 1.0f, -1.0f,  1.0f),new Vector2f(1,1)),//bottom right
+                new Vertex(new Vector3f( 1.0f, -1.0f,-1.0f),new Vector2f(0.666f,1)),
+                new Vertex(new Vector3f( 1.0f,  1.0f, -1.0f),new Vector2f(0.666f,0.666f)),
+                new Vertex(new Vector3f( 1.0f,  1.0f, -1.0f),new Vector2f(0.666f,0.666f)),
+                new Vertex(new Vector3f( 1.0f,  1.0f,  1.0f),new Vector2f(1,0.666f)),
+                new Vertex(new Vector3f( 1.0f, -1.0f,  1.0f),new Vector2f(1,1)),
+
+                //TOP
+                new Vertex(new Vector3f( -1.0f, 1.0f,  1.0f),new Vector2f(0,0.6666f)),//front left
+                new Vertex(new Vector3f( 1.0f,  1.0f,  1.0f),new Vector2f(0.3333f,0.6666f)),//front right
+                new Vertex(new Vector3f( 1.0f,  1.0f, -1.0f),new Vector2f(0.3333f,0.3333f)),//back right
+                new Vertex(new Vector3f( 1.0f,  1.0f, -1.0f),new Vector2f(0.3333f,0.3333f)),//back right
+                new Vertex(new Vector3f(-1.0f,  1.0f, -1.0f),new Vector2f(0,0.3333f)),//back left
+                new Vertex(new Vector3f( -1.0f, 1.0f,  1.0f),new Vector2f(0,0.6666f)),//front left
+
+
+
+
+
+                //BOTTOM
+
+        };

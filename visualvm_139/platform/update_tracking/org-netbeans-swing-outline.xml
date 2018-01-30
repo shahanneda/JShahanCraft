@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.netbeans.swing.outline">
+    <module_version install_time="1475404206957" last="true" origin="installer" specification_version="1.30.1">
+        <file crc="3679534386" name="config/Modules/org-netbeans-swing-outline.xml"/>
+        <file crc="2267340264" name="modules/org-netbeans-swing-outline.jar"/>
+    </module_version>
+</module>

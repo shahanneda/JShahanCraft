@@ -1,0 +1,22 @@
+        LinkedList<Vector3f> positions = new LinkedList<Vector3f>();
+        LinkedList<Vector2f> textCoords = new LinkedList<Vector2f>();
+        for (int i = 0; i < vertices.length;i++){
+            positions.addLast(vertices[i].getPos());
+            //System.out.println("getting tex cord :" + vertices[i].getTexCoord().x + "," + vertices[i].getTexCoord().y);
+            textCoords.addLast(vertices[i].getTexCoord());
+        }
+        FloatBuffer buffer = BufferUtils.createFloatBuffer(vertices.length * Vertex.SIZE); // we create a buffer to store all of the vertices of the model
+        for(int i = 0; i < positions.size();i++){//we put each vertices in the buffer
+            Vector3f pos = positions.get(i);
+            buffer.put(pos.x);
+            buffer.put(pos.y);
+            buffer.put(pos.z);
+        }
+        buffer.flip(); // flip it so the graphic card can read it
+a
+IntBuffer ibuffer = BufferUtils.createIntBuffer(indices.length);
+        ibuffer.put(indices);
+        ibuffer.flip();
+
+
+        size = indices.length;
