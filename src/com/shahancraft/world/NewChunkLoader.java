@@ -12,13 +12,21 @@ import java.util.List;
 /**
  * Created by shahan on 11/26/2017.
  */
+/******
+ * issue: even when chunks are finished loading, still fps drops, check what is happing every frame
+ *
+ *
+ *
+ */
+
 public class NewChunkLoader
 {
     public LinkedList<Chunk> loadedChunks = new LinkedList<Chunk>();
     public LinkedList<Chunk> genQueue;
-    public int genDelay = 1;
+    public float genDelay = 5f;
     double lastGenTime;
-    public static int renderDistance = 5;
+    public static int renderDistance = 6;
+    private int numberOfChunksThatCantLoadYet = 0; // chuncks that ther esister chunks have not yet been created
     public Vector3f getChunkposOfPlayerChunk(Vector3f ppos){
         return new Vector3f((Math.round(ppos.x/32))*32,(Math.round(ppos.y/32))*32,(Math.round(ppos.z/32))*32);
     }
@@ -80,15 +88,52 @@ public class NewChunkLoader
     ///////////////////////////////////////////////////////////////
     public Chunk[] GetLoadedChunk(Vector3f playerPos) {
 
-        Chunk c = loadChunk(getChunkposOfPlayerChunk(playerPos));
-        loadChunksAround(c,renderDistance);
+            Chunk c = loadChunk(getChunkposOfPlayerChunk(new Vector3f(playerPos.x,0,playerPos.z)));
+         loadChunksAround(c,renderDistance);
         for (int i =0;i<loadedChunks.size();i++){
             Chunk chunk = loadedChunks.get(i);
             chunk.updateshitifineedto();
         }
        // System.out.println("last  time gen+" + (lastGenTime-System.currentTimeMillis()));
+//
+//        //System.out.println(genQueue.size() - numberOfChunksThatCantLoadYet);
+//
+//        if(genQueue.size() - numberOfChunksThatCantLoadYet == 0){
+//
+//          // loadChunksAround(loadedChunks.getLast(),renderDistance-1);
+//           // System.out.println("should get more hcunks now~!");
+//        }
+//
+//        handleGeneration();\
+        for (int i =0;i<loadedChunks.size();i++){
+            Chunk chunk = loadedChunks.get(i);
+            chunk.updateshitifineedto();
+        }
         handleGeneration();
         return loadedChunks.toArray(new Chunk[loadedChunks.size()]);
+    }
+    public void Test(Vector3f playerPos){
+//        Chunk playerChunk  =loadChunk(new Vector3f(playerPos.x,playerPos.y,playerPos.z));
+//        Chunk aboveChunk = loadChunk(new Vector3f(playerPos.x,playerPos.y+32,playerPos.z));
+//        playerChunk.setSisterChunk(Chunk.ABOVE,aboveChunk);
+//        aboveChunk.setSisterChunk(Chunk.BELOW,playerChunk);
+//
+//        Chunk playerChunkright  =loadChunk(new Vector3f(playerPos.x + 32,playerPos.y,playerPos.z));
+//        Chunk aboveChunkright = loadChunk(new Vector3f(playerPos.x +32,playerPos.y+32,playerPos.z));
+//        playerChunk.setSisterChunk(Chunk.ABOVE,aboveChunkright);
+//        aboveChunk.setSisterChunk(Chunk.BELOW,playerChunkright);
+//        playerChunk.set
+
+        //  Chunk c = loadChunk(new Vector3f(playerPos.x,0,playerPos.y));
+      //  Chunk c2 =loadChunk(new Vector3f(0 , 0 ,0));
+       // loadChunksAround(c,5);
+//        for(int i = 0; i < 256; i+=32){
+//            loadChunk(new Vector3f(i , 0 ,0));
+//
+//        }
+      System.out.println("Test Button pressed");
+//        loadChunksAround(loadedChunks.getLast(),4);
+
     }
     public void loadChunksAround(Chunk chunk ,int numberOfTimes){
         numberOfTimes--;
@@ -108,6 +153,7 @@ public class NewChunkLoader
         chunk.setSisterChunk(Chunk.ABOVE, aboveChunk);
         chunk.setSisterChunk(Chunk.BELOW, belowChunk);
         loadChunksAround(aboveChunk,numberOfTimes);
+
         loadChunksAround(belowChunk,numberOfTimes);
 
         Chunk backwordsChunk = loadChunk(new Vector3f(chunk.getPosition().x , chunk.getPosition().y ,chunk.getPosition().z-32 ));
@@ -117,7 +163,7 @@ public class NewChunkLoader
         loadChunksAround(forwardsChunk,numberOfTimes);
         loadChunksAround(backwordsChunk,numberOfTimes);
 
-        ///loadChunk(new Vector3f(chunk.getPosition().x , chunk.getPosition().y,chunk.getPosition().z));
+        loadChunk(new Vector3f(chunk.getPosition().x , chunk.getPosition().y,chunk.getPosition().z));
     }
     ///////////////////////////////////////////////////////////////
     public Chunk loadChunk(Vector3f pos){
@@ -148,13 +194,27 @@ public class NewChunkLoader
             Chunk c = genQueue.pollLast();
             if (c != null){
                 if (c.getSisterChunk(Chunk.ABOVE) == null || c.getSisterChunk(Chunk.BELOW) == null || c.getSisterChunk(Chunk.RIGHT ) == null || c.getSisterChunk(Chunk.LEFT) == null || c.getSisterChunk(Chunk.FORWARDS) == null || c.getSisterChunk(Chunk.BACKWORDS) ==null)  {
+                    if(c.hasTriedToBeGeneratedButFailed == false){
+                        numberOfChunksThatCantLoadYet++;
+                    }
+                    c.hasTriedToBeGeneratedButFailed =  true;
                     genQueue.addFirst(c);
-                   return;
+
+
+                    return;
                 }
+                if(c.hasTriedToBeGeneratedButFailed == true)
+                {
+
+                    numberOfChunksThatCantLoadYet--;
+                }
+                //System.out.println("number that hasent been loaded: "+ numberOfChunksThatCantLoadYet + "gen que" + genQueue.size());
                 lastGenTime = System.currentTimeMillis();
                 c.updateModel();
                 c.needToupdate = true;
+
             }
+
 
 
 

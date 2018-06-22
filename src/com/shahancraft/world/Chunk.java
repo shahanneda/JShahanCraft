@@ -39,6 +39,7 @@ public class Chunk {
     public static final int LEFT = 3;
     public static final int ABOVE = 4;
     public static final int BELOW = 5;
+    public Boolean hasTriedToBeGeneratedButFailed = false;
     public void setPosition(Vector3f position) {
         this.position = position;
     }
@@ -206,14 +207,14 @@ public class Chunk {
 //                    for (Integer i : cubeindicies){
 //                        indecis.add(i);
 //                    }
-                  // setBlock(x, y, z, new Block(BlockType.GRASS, new Vector3f(x * 2, y*2, z * 2), this));
+                  setBlock(x, y, z, new Block(BlockType.GRASS, new Vector3f(x * 2, y*2, z * 2), this));
 
 
                 }
             }
         }
      //   System.out.println("UPDATING MODEL");
-        updateModel();
+        //updateModel();
 //       Vertex[] av = vetcies.toArray(new Vertex[vetcies.size()]);
 //        Integer[] aii = indecis.toArray(new Integer[indecis.size()]);
 //       int[] ai = Arrays.stream(aii).mapToInt(Integer::intValue).toArray();
@@ -286,7 +287,8 @@ public class Chunk {
         return Transform.getTransformation(new Vector3f(position.x, position.y, position.z), 0, 0, 0, 1);
     }
     public void fillWithNoise(){
-
+   // fillWithGrass();
+    //**** TEMPPPPPP TODO: Renable noise
 
         boolean airChunk = position.y>64;
         for (int x = 0; x<16;x++){
@@ -307,7 +309,13 @@ public class Chunk {
 
                             if (biome == Biome.Desert){
                                 setBlock(x, y, z, new Block(BlockType.Sand, new Vector3f(x * 2, y * 2, z * 2), this));
-                            }if(worldPosition.y < 20){
+                            }else if(biome == Biome.Lake && y > 8){
+                                setBlock(x,y,z,new Block(BlockType.AIR,new Vector3f(x*2,y*2,z*2),this));
+                            }
+                            else if(biome == Biome.Lake ){
+                                setBlock(x,y,z,new Block(BlockType.WATER,new Vector3f(x*2,y*2,z*2),this));
+                            }
+                            else if(worldPosition.y < 20){
                                 setBlock(x, y, z, new Block(BlockType.Stone, new Vector3f(x * 2, y * 2, z * 2), this));
                             }
                             else {
@@ -316,7 +324,10 @@ public class Chunk {
                             if(y+1>=height){
                                 if (biome == Biome.Desert){
                                     setBlock(x, y, z, new Block(BlockType.Sand, new Vector3f(x * 2, y * 2, z * 2), this));
-                                }else {
+                                } else if (biome == Biome.Lake){
+                                    setBlock(x,y,z,new Block(BlockType.AIR,new Vector3f(x*2,y*2,z*2),this));
+                                }
+                                else {
                                     setBlock(x,y,z,new Block(BlockType.GRASS,new Vector3f(x*2,y*2,z*2),this));
                                 }
 

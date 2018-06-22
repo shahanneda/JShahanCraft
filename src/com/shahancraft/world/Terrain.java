@@ -7,11 +7,11 @@ public class Terrain {
 
     public static int getBlockHeight(float x,float z,float cy){
         float perlinScale = 0.2f;
-        float C1Freq = 0.40f;
+        float C1Freq = 0.60f;
         float C2Freq = 1;
         float C3Freq = 0.75f;
-        float power = 1.7f;
-        float heightModifer = 20;
+        float power = 1.9f;
+        float heightModifer = 10;
         float anoisespread = 4f;
         OpenSimplexNoise noiseGen = new OpenSimplexNoise(123);
         double nx = x/150;
@@ -97,7 +97,10 @@ public class Terrain {
 
         if (moiseture<0.2){
             return Biome.Desert;
-        }else{
+        }else if (moiseture > 0.9){
+            return Biome.Lake;
+        }
+        else{
             return Biome.Planes;
         }
     }

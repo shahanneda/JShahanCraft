@@ -7,6 +7,9 @@ import org.lwjgl.BufferUtils;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.nio.FloatBuffer;
 import java.util.HashMap;
 
@@ -110,7 +113,14 @@ public abstract class Shader {
         StringBuilder source = new StringBuilder();
         BufferedReader reader = null;
         try{
-            reader= new BufferedReader(new FileReader("./res/shaders/" + fileName));
+//            URL fileURL = Shader.class.getResource("com/test/services/LoadRunner/FireCollection/fire.txt");
+//            reader= new BufferedReader(new FileReader(Shader.class.getResource("/res/shaders/" + fileName).getFile()));
+
+            InputStream in = Shader.class.getResourceAsStream("/res/shaders/" + fileName);
+             reader = new BufferedReader(new InputStreamReader(in));
+
+
+           // reader= new BufferedReader(new FileReader("./res/shaders/" + fileName));
             String line;
             while((line = reader.readLine()) != null){
                 source.append(line);

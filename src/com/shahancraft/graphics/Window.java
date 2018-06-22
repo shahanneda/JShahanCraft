@@ -12,8 +12,8 @@ import org.lwjgl.opengl.GL;
 public class Window {
 
     private long window;
-    public  static int  windowWidth = 1080;
-    public  static int windowHight =720;
+    public  static int  windowWidth = 1080*2;
+    public  static int windowHight =720*2;
     public Window(int width,int height, String title){
         glfwDefaultWindowHints();
         glfwWindowHint(GLFW_RESIZABLE,GL_FALSE);

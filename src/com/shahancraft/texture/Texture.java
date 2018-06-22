@@ -1,11 +1,13 @@
 package com.shahancraft.texture;
 
+import com.shahancraft.graphics.shader.Shader;
 import com.shahancraft.world.block.BlockType;
 import de.matthiasmann.twl.utils.PNGDecoder;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.ByteBuffer;
 
 import static org.lwjgl.opengl.GL11.*;
@@ -19,8 +21,14 @@ public class Texture{
     public static final float Stone = 0.444f;
     public Texture(String fileName) {
         try {
-            File file = new File("C:\\Users\\Hassan\\Documents\\JShahanCraft\\res\\textures\\" + fileName);
-            FileInputStream in = new FileInputStream(file);
+            //File file = new File(this.getClass().getResource("/res/textures/" + fileName).getFile());
+           // File file = new File(this.getClass().getResource("/res/textures/" + fileName).getFile());
+           // File file = new File("./res/textures/" + fileName);
+
+
+
+            InputStream in = Shader.class.getResourceAsStream("/res/textures/" + fileName);
+           // FileInputStream in = new FileInputStream(file);
             PNGDecoder decoder = new PNGDecoder(in);
             // assuming RGB here but should allow for RGB and RGBA (changing wall.png to RGBA will crash this!)
             ByteBuffer buf = ByteBuffer.allocateDirect(4 * decoder.getWidth() * decoder.getHeight());

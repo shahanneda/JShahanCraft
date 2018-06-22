@@ -177,7 +177,7 @@ public class Main {
         glfwSetErrorCallback(errorCallback = GLFWErrorCallback.createPrint(System.err));
         glfwInit();
 
-        window = new Window(1200,720,"ShahanCraft");
+        window = new Window(Window.windowWidth,Window.windowHight,"ShahanCraft");
 
     }
     private void cleanUp(){
@@ -241,6 +241,7 @@ public class Main {
         }
         cleanUp();
     }
+    private long lastTime = System.currentTimeMillis();
     private void input(){
         glfwPollEvents();
         if (window.shouldClose()){stop();}
@@ -273,7 +274,15 @@ public class Main {
         camera.rotateX(-(float)(dmousey*rot_speed));
         camera.rotateY(-(float)(dmousex*rot_speed));
         camera.move(dx,dy,dz);
-       if (input.keys[GLFW_KEY_R])renderer.callTest(camera.getPos());
+        if (input.keys[GLFW_KEY_R]){
+            if( System.currentTimeMillis() -lastTime >500 ){
+                renderer.callTest(camera.getPos());
+                lastTime = System.currentTimeMillis();
+            }
+
+        }
+
+
         if (input.keys[GLFW_KEY_L])renderer.randomShit = !renderer.randomShit;
 //        if (input.keys[GLFW_KEY_DOWN])camera.rotateX(rot_speed);
 //        if (input.keys[GLFW_KEY_LEFT])camera.rotateY(-rot_speed);

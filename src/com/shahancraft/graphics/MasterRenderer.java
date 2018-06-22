@@ -73,6 +73,7 @@ public class MasterRenderer {
     }
     public void callTest(Vector3f playerpos){
        // chunkLoader.TestChunk(playerpos);
+        newChunkLoader.Test(playerpos);
     }
     public void render(Camera camera,Vector3f sun){
         Matrix4f viewMatrix = Transform.getViewMatrix(camera);

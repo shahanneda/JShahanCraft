@@ -1,5 +1,5 @@
 package com.shahancraft.world;
 
 public enum Biome{
-Planes,Desert
+Planes,Desert,Lake
 }
