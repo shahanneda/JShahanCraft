@@ -20,6 +20,9 @@ Features inculde:
 
 ## All Images here are directly from the game, the game is using the same textures as minecraft, but it can be run with any texxture simply by changing the /res/res/textures/grassBlock.png , this a texture atlas with all the textures
 
-![image](ShahanCraftImages/1.png )
+![image](ShahanCraftImages/9.png )
 
-![image](ShahanCraftImages/5.png )
+![image](ShahanCraftImages/11.png )
+![image](ShahanCraftImages/3.png )
+
+![image](ShahanCraftImages/2.png )
