@@ -2,7 +2,7 @@
 
 # A 3D Gameengine made from stratch in OpenGl.
 ### **No extra libraries and tools used other than perlin noise, and Opengl(using lwjgl wrapper)**
-###[Download](https://github.com/shahanneda/JShahanCraft/releases/download/v0.1/JShahanCraft.jar)
+###  [*Download*](https://github.com/shahanneda/JShahanCraft/releases/download/v0.1/JShahanCraft.jar) 
 
 #### **Note: I did not use version control when i developed this project, just uploading it to git so it does not get lost**
 Features inculde: 
